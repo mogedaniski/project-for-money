@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DecenaEats - Products</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+
+<header>
+    <h1>Our Delicious Dishes</h1>
+</header>
+
+<nav>
+    <a href="home.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="cart.html">Cart</a>
+    <a href="product.html">Product</a>
+    <a href="contact.html">Contact</a>
+    <a href="checkout.html">Checkout</a>
+</nav>
+
+<div class="product-container">
+    <h2>Explore Our Menu</h2>
+    <div class="products">
+        
+        <div class="product-item">
+            <img src="image/jollof_rice.jpeg" alt="Jollof Rice">
+            <h3>Jollof Rice</h3>
+            <p>Classic Nigerian jollof rice cooked with tomatoes and spices.</p>
+            <p class="price" data-price="10.00">$10.00</p>
+            <button class="add-to-cart" data-name="Jollof Rice" data-price="10.00">Add to Cart</button>
+        </div>
+        
+        <div class="product-item">
+            <img src="image/egusi_soup.jpeg" alt="Egusi Soup">
+            <h3>Egusi Soup</h3>
+            <p>Rich melon seed soup served with your choice of swallow.</p>
+            <p class="price" data-price="12.00">$12.00</p>
+            <button class="add-to-cart" data-name="Egusi Soup" data-price="12.00">Add to Cart</button>
+        </div>
+        
+        <div class="product-item">
+            <img src="image/suya.jpeg" alt="Suya">
+            <h3>Suya</h3>
+            <p>Spicy Nigerian grilled meat skewers.</p>
+            <p class="price" data-price="8.00">$8.00</p>
+            <button class="add-to-cart" data-name="Suya" data-price="8.00">Add to Cart</button>
+        </div>
+        
+        <div class="product-item">
+            <img src="image/amala_okra.jpeg" alt="Amala and Okra Soup">
+            <h3>Amala and Okra Soup</h3>
+            <p>Soft amala served with rich and delicious okra soup.</p>
+            <p class="price" data-price="11.00">$11.00</p>
+            <button class="add-to-cart" data-name="Amala and Okra Soup" data-price="11.00">Add to Cart</button>
+        </div>
+        
+        <div class="product-item">
+            <img src="image/eba.jpeg" alt="Eba">
+            <h3>Eba</h3>
+            <p>Perfectly made cassava-based swallow, best with Nigerian soups.</p>
+            <p class="price" data-price="5.00">$5.00</p>
+            <button class="add-to-cart" data-name="Eba" data-price="5.00">Add to Cart</button>
+        </div>
+
+        <div class="product-item">
+            <img src="image/afang_soup.jpeg" alt="Afang Soup">
+            <h3>Afang Soup</h3>
+            <p>Delicious vegetable soup made with waterleaf and okazi leaves.</p>
+            <p class="price" data-price="13.00">$13.00</p>
+            <button class="add-to-cart" data-name="Afang Soup" data-price="13.00">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 DecenaEats. All Rights Reserved.</p>
+</footer>
+
+<script>
+    function addToCart(event) {
+        const button = event.target;
+        const productName = button.getAttribute('data-name');
+        const productPrice = parseFloat(button.getAttribute('data-price'));
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        const existingItem = cart.find(item => item.name === productName);
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({ name: productName, price: productPrice, quantity: 1 });
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        alert(`${productName} has been added to your cart!`);
+    }
+
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', addToCart);
+    });
+</script>
+
+</body>
+</html>
